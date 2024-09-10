@@ -10,11 +10,11 @@ from pathlib import Path
 #   "petal_width": 0.0 // float representing the petal width in cm
 # }
 
-@click.command()
-@click.option("--sepal_length", "-sl", type="float")
-@click.option("--sepal_width", "-sw", type="float")
-@click.option("--petal_length","pl", type="float")
-@click.option("--petal_width", "pw", type="float")
+# @click.command()
+# @click.option("--sepal_length", "-sl", type="float")
+# @click.option("--sepal_width", "-sw", type="float")
+# @click.option("--petal_length","pl", type="float")
+# @click.option("--petal_width", "pw", type="float")
 def main(sepal_length, sepal_width, petal_length, petal_width) : 
     """
     load train model
@@ -23,14 +23,15 @@ def main(sepal_length, sepal_width, petal_length, petal_width) :
     """
 
     # load trained model
-    with open("../models/rdf.pkl", "rb") as f: 
+    with open("./models/rdf.pkl", "rb") as f: 
         rdf = pkl.load(f)
 
     # predict label
-    label = rdf.predict([[sepal_length, sepal_width, petal_length, petal_width]]))
+    label = rdf.predict([[sepal_length, sepal_width, petal_length, petal_width]])
 
-
+    
     print({"prediction" : label[0]})
+    return label.tolist()
 
 
 # if __name__ == "__main__" :
